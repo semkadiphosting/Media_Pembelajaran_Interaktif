@@ -45,6 +45,7 @@ button.main:active{transform:scale(.97)}
 .tab.on{background:linear-gradient(90deg,#0b8fc2,#7c4dff);color:#fff;border-color:transparent}
 .g{border-radius:14px;transition:transform .12s}.g:hover{transform:translateY(-2px)}.g.on{box-shadow:0 6px 16px rgba(11,143,194,.25)}
 .g b{font-size:1rem}
+.games{max-height:360px;overflow-y:auto;padding:4px}
 pre{border-radius:14px;border:2px dashed var(--bd)}
 .chips{display:flex;flex-wrap:wrap;gap:8px}.chip{border:2px solid var(--bd);background:var(--out);color:var(--tx);border-radius:999px;padding:8px 14px;font:inherit;font-size:.88rem;cursor:pointer;transition:transform .1s}.chip:active{transform:scale(.95)}.chip.on{background:linear-gradient(90deg,#0b8fc2,#7c4dff);color:#fff;border-color:transparent;font-weight:600}
 label small{font-weight:400;color:var(--mut)}
@@ -54,7 +55,7 @@ label small{font-weight:400;color:var(--mut)}
 <body>
 <div class="wrap">
 <h1>🎮 Generator Prompt Game Edukasi</h1>
-<p class="sub" id="sub">Isi data pembelajaran, pilih game, lalu salin prompt ke Canva Code.</p><div class="tabs"><button type="button" class="tab on" id="tg" onclick="setMode('game')">🎮 Game Canva Code</button><button type="button" class="tab" id="tr" onclick="setMode('rpp')">📘 RPP / Modul Ajar MPI</button></div>
+<p class="sub" id="sub">Isi data pembelajaran, pilih game, lalu salin prompt ke Canva Code.</p><div class="tabs"><button type="button" class="tab on" id="tg" onclick="setMode('game')">🎮 Game Canva Code</button><button type="button" class="tab" id="tr" onclick="setMode('rpp')">📘 RPP / Modul Ajar MPI</button><button type="button" class="tab" id="tp" onclick="setMode('poster')">🖼️ Poster</button></div>
 <div class="grid">
 <div class="card">
 <div id="gameForm"><label>Jenis game</label>
@@ -76,7 +77,10 @@ label small{font-weight:400;color:var(--mut)}
 <div><label for="maskot">Nama maskot</label><input id="maskot" value="Helium"></div>
 </div>
 <label for="extra">Catatan tambahan (opsional)</label><textarea id="extra" rows="2" placeholder="mis. gunakan bahasa santai, tambahkan level bonus"></textarea></div><div id="rppForm" hidden><label for="r_mapel">Mata pelajaran</label><input id="r_mapel" value="Sistem Komputer"><div class="row"><div><label for="r_kelas">Kelas</label><input id="r_kelas" value="X"></div><div><label for="r_jur">Program keahlian</label><input id="r_jur" value="Rekayasa Perangkat Lunak (RPL)"></div></div><label for="r_topik">Topik / materi</label><input id="r_topik" value="Pengenalan Komponen Utama Komputer & Cara Kerjanya (Input, Process, Storage, Output)"><div class="r3"><div><label for="r_n">Pertemuan</label><input id="r_n" type="number" min="1" max="10" value="2"></div><div><label for="r_jp">JP / pertemuan</label><input id="r_jp" type="number" min="1" max="8" value="2"></div><div><label for="r_mnt">Menit / JP</label><input id="r_mnt" type="number" min="30" max="60" value="45"></div></div><div class="row"><div><label for="r_siswa">Jumlah siswa</label><input id="r_siswa" type="number" min="1" value="32"></div><div><label for="r_model">Model pembelajaran</label><select id="r_model"><option>Problem Based Learning</option><option>Project Based Learning</option><option>Discovery Learning</option><option>Inquiry Learning</option></select></div></div><label>Karakteristik siswa <small>(pilih semua yang sesuai, RPP menyesuaikan otomatis)</small></label><div class="chips" id="r_chips"></div><label for="r_kar">Karakteristik lain (opsional)</label><input id="r_kar" placeholder="mis. banyak siswa pindahan"><label for="r_tujuan">Tujuan pembelajaran (satu per baris)</label><textarea id="r_tujuan" rows="3">Peserta didik mampu mengklasifikasikan komponen utama komputer (Input, Process, Output, Storage) dengan tepat.
-Peserta didik mampu menganalisis alur kerja sistem komputer dari saat data dimasukkan hingga menghasilkan informasi.</textarea><label for="r_profil">Dimensi profil lulusan</label><input id="r_profil" value="Penalaran Kritis, Kolaborasi, Kreativitas"><label for="r_mitra">Kemitraan pembelajaran</label><input id="r_mitra" value="Kerja kelompok kecil (peer collaboration), kelompok beranggotakan 4–5 orang"><label for="r_dig">Pemanfaatan digital</label><input id="r_dig" value="PID, animasi grafis, dan MPI berbasis web"><label for="r_file">Nama file keluaran</label><input id="r_file" value="RPP_SK_Kelas10_SMKS.doc"><label class="chk"><input type="checkbox" id="r_lkpd"> Sertakan LKPD (PBL, visual, interaktif)</label><label class="chk"><input type="checkbox" id="r_soal"> Sertakan 10 soal akhir bertingkat + kunci pembahasan</label></div>
+Peserta didik mampu menganalisis alur kerja sistem komputer dari saat data dimasukkan hingga menghasilkan informasi.</textarea><label for="r_profil">Dimensi profil lulusan</label><input id="r_profil" value="Penalaran Kritis, Kolaborasi, Kreativitas"><label for="r_mitra">Kemitraan pembelajaran</label><input id="r_mitra" value="Kerja kelompok kecil (peer collaboration), kelompok beranggotakan 4–5 orang"><label for="r_dig">Pemanfaatan digital</label><input id="r_dig" value="PID, animasi grafis, dan MPI berbasis web"><label for="r_file">Nama file keluaran</label><input id="r_file" value="RPP_SK_Kelas10_SMKS.doc"><label class="chk"><input type="checkbox" id="r_lkpd"> Sertakan LKPD (PBL, visual, interaktif)</label><label class="chk"><input type="checkbox" id="r_soal"> Sertakan 10 soal akhir bertingkat + kunci pembahasan</label></div><div id="posterForm" hidden><label for="p_jenis">Jenis poster</label><select id="p_jenis"><option>Poster materi (ringkasan pelajaran)</option><option>Infografis materi</option><option>Peta konsep</option><option>Timeline / urutan peristiwa</option><option>Rumus dan cheat sheet</option><option>Tata tertib / aturan kelas</option><option>Motivasi belajar</option><option>Kampanye / ajakan</option><option>Pengumuman / event sekolah</option></select><label for="p_topik">Judul / topik poster</label><input id="p_topik" value="Sistem Periodik Unsur"><div class="row"><div><label for="p_mapel">Mata pelajaran</label><input id="p_mapel" value="Proyek IPAS"></div><div><label for="p_aud">Untuk</label><input id="p_aud" value="siswa kelas X"></div></div><label for="p_tag">Tagline / pesan utama</label><input id="p_tag" value="Kenali Unsur, Pahami Dunia!"><label for="p_poin">Isi poster (satu poin per baris, ideal 3-6 poin)</label><textarea id="p_poin" rows="4">Lambang unsur ditulis 1-2 huruf, huruf pertama kapital
+Contoh: Na = Natrium, K = Kalium, Fe = Besi
+Unsur disusun berdasarkan nomor atom
+Golongan = lajur vertikal, periode = baris horizontal</textarea><label class="chk"><input type="checkbox" id="p_auto"> Biarkan AI menyusun isi materi otomatis (isian di atas diabaikan)</label><label for="p_n">Jumlah poin materi (bila disusun AI)</label><select id="p_n"><option>4</option><option selected>5</option><option>6</option></select><div class="row"><div><label for="p_ori">Ukuran / orientasi</label><select id="p_ori"><option>Portrait A4 (21 x 29,7 cm)</option><option>Portrait A3 (poster dinding)</option><option>Landscape 16:9 (untuk layar IFP)</option><option>Portrait 9:16 (story/status)</option><option>Persegi 1:1 (media sosial)</option></select></div><div><label for="p_gaya">Gaya visual</label><select id="p_gaya"><option>Ilustrasi flat modern yang cerah</option><option>Infografis bersih dan profesional</option><option>Kartun ceria ramah anak</option><option>Paper-cut 3D berlapis</option><option>Isometrik 3D warna-warni</option><option>Watercolor lembut</option><option>Pop-art komik</option><option>Retro vintage berwarna cerah</option><option>Minimalis dengan banyak ruang kosong</option><option>Papan tulis kapur berwarna cerah</option></select></div></div><div class="row"><div><label for="p_warna">Palet warna</label><select id="p_warna"><option>Biru-tosca segar</option><option>Oranye-kuning hangat</option><option>Pastel lembut</option><option>Hijau alam segar</option><option>Ungu-pink ceria</option><option>Biru-putih formal sekolah</option><option>Pilih otomatis sesuai tema</option></select></div><div><label for="p_target">Dibuat di</label><select id="p_target"><option value="canva">Canva (Magic Design / Canva AI)</option><option value="image">AI gambar (ChatGPT, Gemini, dll.)</option></select></div></div><label>Elemen visual <small>(pilih maksimal 5)</small></label><div class="chips" id="p_chips"></div><label for="p_foot">Footer (opsional)</label><input id="p_foot" placeholder="mis. SMK Diponegoro Tumpang - Guru: Nama Guru"></div>
 </div>
 <div class="card">
 <label style="margin-top:0">Hasil prompt</label>
@@ -100,8 +104,45 @@ var G=[
  tema:"Gunakan nuansa pesta taman yang riang: langit biru cerah, awan putih, balon warna-warni, konfeti, dan bunga-bunga di bagian bawah layar — hindari tampilan gelap atau suram."},
 {id:"sort",e:"\ud83e\uddfa",nama:"Sortir Kartu Kategori",d:"Seret kartu ke keranjang",
  mek:function(p){return "Tampilkan sejumlah kartu yang harus diseret siswa ke keranjang kategori yang tepat. "+(p>1?"Hingga "+p+" siswa atau tim bermain bergiliran, dan papan skor tiap pemain diperbarui langsung setelah setiap kartu dijatuhkan.":"Setiap kartu yang masuk ke keranjang benar mendapat poin.");},
- tema:"Gunakan nuansa kebun belajar yang segar: rumput hijau muda, keranjang kayu berwarna cerah, kupu-kupu, dan pohon kecil di latar — hindari tampilan gelap atau suram."}
+ tema:"Gunakan nuansa kebun belajar yang segar: rumput hijau muda, keranjang kayu berwarna cerah, kupu-kupu, dan pohon kecil di latar — hindari tampilan gelap atau suram."},
+{id:"memory",e:"\ud83c\udccf",nama:"Kartu Memori Pasangan",d:"Cocokkan kartu soal dan jawaban",
+ mek:function(p){return "Tampilkan sejumlah kartu tertutup berisi soal dan jawaban; siswa membuka dua kartu untuk mencari pasangan yang cocok antara soal dan jawabannya. "+pl(p,"Hingga {N} siswa atau tim bermain bergiliran; setiap pasangan benar menambah poin dan papan skor diperbarui langsung.","Setiap pasangan yang benar menambah poin dan kartunya tetap terbuka.");},
+ tema:"Gunakan nuansa taman bermain yang ceria: latar krem dan biru muda, kartu bergambar bintang dan balon warna-warni, serta konfeti saat pasangan cocok, hindari tampilan gelap atau suram."},
+{id:"race",e:"\ud83c\udfce\ufe0f",nama:"Balap Mobil Kuis",d:"Jawab cepat, mobil melaju",
+ mek:function(p){return "Tampilkan satu soal di bagian atas layar dan pilihan jawaban berupa papan penunjuk di tepi jalan. "+pl(p,"Hingga {N} siswa memiliki mobil di lajurnya masing-masing; setiap jawaban benar membuat mobil melaju dan pemain pertama yang mencapai garis finis menang.","Setiap jawaban benar membuat mobil melaju hingga garis finis sebelum waktu habis.");},
+ tema:"Gunakan nuansa sirkuit kota yang cerah: langit biru, jalan abu-abu muda dengan marka putih, bendera kotak-kotak, pepohonan hijau, dan penonton kartun, hindari tampilan gelap atau suram."},
+{id:"mole",e:"\ud83d\udd28",nama:"Tap Si Tikus Kuis",d:"Tap tikus pembawa jawaban",
+ mek:function(p){return "Tampilkan satu soal tetap di bagian atas layar sementara beberapa tikus muncul dan bersembunyi dari lubang-lubang tanah, masing-masing membawa satu pilihan jawaban. "+pl(p,"Hingga {N} siswa berebut menyentuh tikus yang membawa jawaban benar; siswa tercepat mendapat poin dan papan skor diperbarui langsung.","Siswa menyentuh tikus yang membawa jawaban benar untuk mendapat poin.");},
+ tema:"Gunakan nuansa kebun yang segar: rumput hijau muda, tanah cokelat terang, bunga, wortel, dan tikus kartun yang lucu, hindari tampilan gelap atau suram."},
+{id:"frog",e:"\ud83d\udc38",nama:"Lompat Batu Sungai",d:"Katak menyeberang sungai",
+ mek:function(p){return "Tampilkan satu soal di bagian atas layar dan batu-batu di sungai yang masing-masing membawa satu pilihan jawaban. Siswa menyentuh batu jawaban benar agar katak melompat maju menyeberangi sungai; jawaban salah membuat batu tenggelam sebentar dan siswa boleh mencoba lagi. "+pl(p,"Hingga {N} siswa memiliki katak di sungainya masing-masing dan pemain pertama yang tiba di seberang menang.","Katak harus tiba di seberang sebelum waktu habis.");},
+ tema:"Gunakan nuansa sungai hutan yang cerah: air biru kehijauan, daun teratai, bunga, capung, dan pepohonan hijau, hindari tampilan gelap atau suram."},
+{id:"treasure",e:"\ud83d\uddfa\ufe0f",nama:"Berburu Harta Karun",d:"Buka peti jawaban yang benar",
+ mek:function(p){return "Tampilkan satu soal di bagian atas layar dan beberapa peti harta karun di peta pulau, masing-masing berisi satu pilihan jawaban. Peti dengan jawaban benar terbuka dan memberi koin emas, sedangkan jawaban salah memberi petunjuk singkat. "+pl(p,"Hingga {N} siswa atau tim berlomba mengumpulkan koin terbanyak dan papan skor diperbarui langsung.","Kumpulkan koin sebanyak mungkin hingga seluruh peta terbuka.");},
+ tema:"Gunakan nuansa pulau tropis yang cerah: pasir krem, laut biru muda, pohon kelapa, peta harta karun, dan kapal layar, hindari tampilan gelap atau menakutkan."},
+{id:"line",e:"\ud83d\udd17",nama:"Tarik Garis Pasangan",d:"Hubungkan soal dengan jawaban",
+ mek:function(p){return "Tampilkan dua kolom: kolom kiri berisi soal atau istilah dan kolom kanan berisi jawaban dengan posisi diacak. Siswa menarik garis dengan jari dari kartu kiri ke pasangan yang tepat di kanan. "+pl(p,"Hingga {N} siswa atau tim bermain bergiliran dan papan skor diperbarui setelah setiap garis dibuat.","Garis yang benar tetap terlihat dan menambah poin.");},
+ tema:"Gunakan nuansa papan tulis warna-warni yang cerah: latar putih dan biru muda, kartu pastel, garis penghubung berwarna terang, dan bintang kecil saat benar, hindari tampilan gelap atau suram."},
+{id:"fruit",e:"\ud83c\udf4e",nama:"Tangkap Buah Jatuh",d:"Geser keranjang tangkap jawaban",
+ mek:function(p){return "Tampilkan satu soal tetap di bagian atas layar sementara buah-buahan pembawa pilihan jawaban jatuh perlahan dari pohon. Siswa menggeser keranjang dengan jari untuk menangkap buah yang membawa jawaban benar. "+pl(p,"Hingga {N} siswa memiliki keranjang masing-masing di bagian bawah layar; siswa yang lebih dulu menangkap jawaban benar mendapat poin dan papan skor diperbarui langsung.","Setiap buah benar yang tertangkap menambah poin.");},
+ tema:"Gunakan nuansa kebun buah yang cerah: langit biru, pohon apel dan jeruk berdaun hijau muda, keranjang anyaman, kupu-kupu, dan sinar matahari, hindari tampilan gelap atau suram."},
+{id:"wheel",e:"\ud83c\udfa1",nama:"Roda Putar Tantangan",d:"Putar roda lalu jawab soal",
+ mek:function(p){return "Tampilkan roda putar besar berwarna-warni yang menentukan poin atau kategori soal. Siswa menyentuh tombol putar, lalu menjawab satu soal pilihan ganda yang muncul di tengah layar; jawaban benar mendapat poin sesuai hasil putaran. "+pl(p,"Hingga {N} siswa atau tim bermain bergiliran dan papan skor diperbarui langsung.","Kumpulkan poin setinggi mungkin dalam beberapa putaran.");},
+ tema:"Gunakan nuansa karnaval yang meriah: roda warna-warni cerah, lampu hias, balon, pita, dan konfeti, hindari tampilan gelap atau suram."},
+{id:"escape",e:"\ud83d\udd10",nama:"Escape Room Kuis",d:"Buka gembok satu per satu",
+ mek:function(p){return "Tampilkan ruangan petualangan dengan beberapa pintu bergembok yang harus dibuka berurutan. Setiap pintu menampilkan satu soal; jawaban benar membuka gembok dan lanjut ke ruangan berikutnya, sedangkan jawaban salah memberi petunjuk. "+pl(p,"Hingga {N} tim berlomba keluar paling cepat dan papan skor serta waktu tiap tim diperbarui langsung.","Selesaikan semua pintu sebelum waktu habis.");},
+ tema:"Gunakan nuansa ruang petualangan yang cerah dan ramah siswa: dinding warna pastel, peta, kunci emas, lampu hangat, dan buku bergambar, hindari tampilan gelap atau menakutkan."},
+{id:"tower",e:"\ud83c\udfd7\ufe0f",nama:"Bangun Menara Kuis",d:"Jawaban benar menambah blok",
+ mek:function(p){return "Tampilkan satu soal di bagian atas layar dan pilihan jawaban di bagian bawah. Setiap jawaban benar menambahkan satu blok warna-warni pada menara, sedangkan jawaban salah membuat satu blok bergoyang dan turun. "+pl(p,"Hingga {N} siswa membangun menara masing-masing dan menara tertinggi saat waktu habis menang.","Bangun menara setinggi mungkin hingga target tercapai.");},
+ tema:"Gunakan nuansa taman bermain balok yang ceria: langit biru, awan, balok kayu warna-warni, derek mainan, dan bendera kecil, hindari tampilan gelap atau suram."},
+{id:"tf",e:"\u26a1",nama:"Benar atau Salah Cepat",d:"Tap Benar/Salah sebelum waktu habis",
+ mek:function(p){return "Soal berbentuk pernyataan benar/salah. Tampilkan satu pernyataan besar di tengah layar dengan pewaktu singkat, dan dua tombol raksasa BENAR dan SALAH di bawahnya. Siswa menyentuh salah satu tombol sebelum waktu habis; jawaban cepat dan tepat mendapat poin lebih besar. "+pl(p,"Hingga {N} siswa menjawab bersamaan lewat tombol di sisi layar masing-masing dan papan skor diperbarui langsung.","Bangun rangkaian jawaban benar beruntun untuk bonus poin.");},
+ tema:"Gunakan nuansa kuis TV yang segar: latar biru muda dan putih, tombol hijau terang untuk BENAR dan oranye terang untuk SALAH, bintang, dan kilatan, hindari tampilan gelap atau suram."},
+{id:"ladder",e:"\ud83c\udfb2",nama:"Tangga Ular Kuis",d:"Lempar dadu, jawab, maju",
+ mek:function(p){return "Tampilkan papan permainan bergaya tangga-ular dengan petak bernomor. Siswa menyentuh dadu besar untuk melangkah, lalu menjawab satu soal pada petak tujuan; jawaban benar membuat bidak maju dan mendapat bonus tangga, jawaban salah membuat bidak tetap di tempat atau turun lewat ular yang lucu. "+pl(p,"Hingga {N} bidak berwarna berbeda bermain bergiliran dan pemain pertama yang mencapai petak akhir menang, dengan papan skor diperbarui langsung.","Capai petak akhir dengan sesedikit mungkin giliran.");},
+ tema:"Gunakan nuansa papan permainan keluarga yang cerah: petak warna pastel, tangga kayu, ular hijau lucu, dadu besar, dan bidak bulat, hindari tampilan gelap atau menakutkan."}
 ];
+function pl(p,a,b){return p>1?a.split("{N}").join(p):b}
 var cur="fish";
 function $(i){return document.getElementById(i)}
 function v(i){return $(i).value.trim()}
@@ -121,8 +162,33 @@ function drawGames(){
  });
 }
 ["kelas","mapel","materi","tujuan","jsoal","level","pemain","maskot","extra"].forEach(function(i){$(i).addEventListener("input",build)});
-var aiPick={game:"canva",rpp:"claude"};
+var PE=["Maskot / karakter pemandu","Ikon pendukung","Diagram alur","Tabel perbandingan","Ilustrasi utama besar","Kotak Tahukah kamu?","Area logo sekolah","Area QR code","Garis waktu"],psel=[0,1,4];
+function pv(i){return $("p_"+i).value.trim()}
+function drawPChips(){var c=$("p_chips");c.innerHTML="";PE.forEach(function(k,i){var b=document.createElement("button"),on=psel.indexOf(i)>-1;b.type="button";b.className="chip"+(on?" on":"");b.textContent=(on?"\u2713 ":"")+k;b.onclick=function(){var j=psel.indexOf(i);if(j>-1)psel.splice(j,1);else psel.push(i);drawPChips();build()};c.appendChild(b)})}
+function buildPoster0(){
+ var pts=$("p_poin").value.split("\n").map(function(x){return x.trim()}).filter(Boolean),el=psel.map(function(i){return PE[i].toLowerCase()}),cv=$("p_target").value==="canva";
+ var t="Bertindak sebagai desainer grafis edukasi profesional. Buatkan poster pembelajaran berjenis "+pv("jenis").toLowerCase()+" dengan judul '"+pv("topik")+"' untuk "+pv("aud")+" pada mata pelajaran "+pv("mapel")+", dengan format "+pv("ori")+".\n\n"+
+ "Pesan utama (tagline): '"+pv("tag")+"'.\n\n"+
+ "Isi poster (ringkas dan mudah dibaca dari jarak 3 meter):\n"+pts.map(function(x){return "- "+x}).join("\n")+"\n\n"+
+ "Gaya visual: "+pv("gaya").toLowerCase()+". Palet warna: "+pv("warna").toLowerCase()+". Elemen yang disertakan: "+(el.length?el.join(", "):"sesuai kebutuhan desain")+".\n\n"+
+ "Prinsip desain: hierarki visual jelas (judul paling besar, poin utama berikutnya, detail paling kecil), kontras warna tinggi agar teks terbaca, satu titik fokus visual, ruang kosong yang cukup, margin aman di tepi, maksimal dua jenis huruf (judul tebal dan isi sederhana), ikon dan ilustrasi yang konsisten, tampilan cerah, ramah siswa, dan tidak gelap atau suram. Gunakan huruf besar agar terbaca dari belakang kelas.\n\n"+
+ (cv?"Buat langsung di Canva: gunakan ilustrasi, ikon, dan font bawaan Canva, susun semua teks sebagai elemen yang mudah diedit, dan berikan 2-3 variasi tata letak.":"Hasilkan satu gambar poster utuh. Karena AI gambar sering salah mengeja, tuliskan hanya teks judul dan tagline persis seperti di atas; untuk poin isi, gambarkan sebagai ikon dengan label sangat singkat (1-3 kata) atau sisakan area kosong yang rapi untuk teks yang ditambahkan kemudian.")+
+ (pv("foot")?"\n\nTambahkan footer kecil berisi: "+pv("foot")+".":"");
+ $("out").textContent=t;analyze();
+}
+function buildPoster(){
+ buildPoster0();
+ if(!$("p_auto").checked)return;
+ var o=$("out");
+ o.textContent=o.textContent.replace(/Isi poster \(ringkas[\s\S]*?(?=\n\nGaya visual)/,"Susun sendiri isi poster berupa ringkasan materi '"+pv("topik")+"' yang akurat dan sesuai kurikulum untuk "+pv("aud")+": tepat "+$("p_n").value+" poin utama (definisi, konsep kunci, contoh, dan fakta penting), masing-masing maksimal 12 kata, ditambah satu kalimat penutup yang mudah diingat. Pastikan semua fakta, lambang, dan istilah benar.");
+ analyze();
+}
+document.querySelectorAll("#posterForm input,#posterForm select,#posterForm textarea").forEach(function(e){e.addEventListener("input",build);e.addEventListener("change",build)});
+drawPChips();
+var aiPick={game:"canva",rpp:"claude",poster:"pcanva"};
 var STEPS={
+pcanva:["Buka canva.com dan masuk ke akun Anda.","Gunakan Canva AI atau Magic Design (cari lewat kolom pencarian atau menu Canva AI; letak menu dapat berbeda antar versi), lalu pilih jenis desain Poster.","Tempel prompt dan kirim; pilih variasi yang paling cocok.","Edit teks, warna, dan elemen langsung di Canva; tambahkan logo sekolah dan nama guru.","Periksa keterbacaan dari jarak jauh (perkecil tampilan hingga 25%), ejaan, dan kebenaran materi.","Unduh sebagai PDF Cetak atau PNG, lalu cetak atau tampilkan di IFP."],
+pimg:["Buka AI gambar pilihan Anda (misalnya ChatGPT atau Gemini yang mendukung pembuatan gambar).","Tempel prompt dan kirim; minta 2-3 variasi bila memungkinkan.","Jika teks pada gambar salah eja, minta perbaikan atau biarkan area teks kosong.","Unduh gambar terbaik, lalu buka di Canva untuk menambahkan teks yang akurat, logo, dan nama guru.","Periksa kebenaran materi dan keterbacaan sebelum dicetak atau ditampilkan."],
 canva:["Buka canva.com dan masuk ke akun Anda (akun pendidikan/guru biasanya lebih lengkap).","Cari fitur Canva Code lewat kolom pencarian atau menu Canva AI (letak menu dapat berbeda antar versi).","Tempel Bagian 1, kirim, tunggu game selesai dibuat, lalu jalankan pratinjau.","Jika sudah berjalan, kirim Bagian 2, lalu Bagian 3, lalu Bagian 4 (soal), satu per satu.","Uji di layar sentuh kelas, perbaiki dengan prompt pendek dan spesifik, lalu bagikan lewat tautan atau tampilkan di IFP."],
 chatsoal:["Buka chat AI pilihan Anda (claude.ai, chatgpt.com, atau gemini.google.com).","Mulai percakapan baru, lalu tempel Prompt Pembuat Soal dari aplikasi ini.","Periksa setiap soal dan kunci jawaban, terutama lambang, rumus, dan fakta; minta perbaikan jika ada yang salah.","Pastikan jawaban benar tersebar merata di A\u2013D.","Salin soal final ke Langkah 2 di aplikasi ini, lalu kirim Bagian 4 ke Canva Code."],
 claude:["Buka claude.ai dan mulai chat baru.","Unggah template modul ajar sekolah (.docx atau PDF) lewat tombol lampiran, karena prompt menyebut format sesuai lampiran.","Tempel prompt dari aplikasi ini lalu kirim.","Minta hasil sebagai file Word (.docx) bila tersedia; jika tidak, minta teksnya lalu tempel ke Word.","Jika dokumen terpotong, ketik lanjutkan atau minta per bagian: Pertemuan 1, Pertemuan 2, LKPD, soal.","Periksa total menit, sintaks model, tautan sumber, dan kesesuaian CP/TP sebelum dipakai."],
@@ -143,6 +209,16 @@ function analyze(){
   chk(v("maskot").length>0,"Maskot terisi","Nama maskot masih kosong");
   R=[["Canva Code","Utama","Prompt Bagian 1\u20134 dirancang untuk membuat game web interaktif di Canva."],["Claude / ChatGPT / Gemini","Pendukung","Untuk membuat dan memeriksa bank soal sebelum dikirim ke Canva Code."]];
   note="Canva Code dipakai untuk membuat game; soal terbaik dibuat di chat AI lalu diperiksa guru.";
+ }else if(mode==="poster"){
+  var pn=$("p_poin").value.split("\n").filter(function(x){return x.trim()}),mxl=Math.max.apply(null,pn.map(function(x){return x.length}).concat([0]));
+  chk(pv("topik").length>3&&pv("topik").length<=60,"Judul ringkas dan jelas","Judul kosong atau terlalu panjang (maksimal 60 karakter agar besar dan terbaca)");
+  chk(pv("tag").length>0&&pv("tag").length<=60,"Tagline singkat","Tagline kosong atau terlalu panjang (maksimal 60 karakter)");
+  chk($("p_auto").checked||(pn.length>=3&&pn.length<=6),$("p_auto").checked?"Isi materi disusun AI ("+$("p_n").value+" poin), harap diperiksa guru":pn.length+" poin isi (ideal)","Jumlah poin "+pn.length+"; poster paling terbaca dengan 3-6 poin");
+  chk($("p_auto").checked||mxl<=100,"Tiap poin ringkas","Ada poin lebih dari 100 karakter; ringkas agar terbaca dari jarak jauh");
+  chk(psel.length>=1&&psel.length<=5,psel.length+" elemen visual (fokus)",psel.length?"Terlalu banyak elemen visual ("+psel.length+"); pilih maksimal 5":"Belum ada elemen visual dipilih");
+  chk($("p_target").value==="canva","Teks dapat diedit dengan akurat di Canva","AI gambar sering salah eja; gunakan untuk visual lalu tambahkan teks di Canva");
+  R=[["Canva (Magic Design / Canva AI)","Disarankan","Teks mudah diedit, ada ilustrasi dan font siap pakai, ekspor PDF untuk cetak."],["ChatGPT / Gemini (gambar)","Alternatif","Bagus untuk ilustrasi unik; teks panjang sering salah eja, finishing sebaiknya di Canva."]];
+  note="Untuk poster dengan banyak teks materi, pilih Canva; untuk ilustrasi utama yang unik, gunakan AI gambar lalu rapikan di Canva.";
  }else{
   var L=$("r_lkpd").checked,S=$("r_soal").checked;
   chk(ksel.length>=1&&ksel.length<=5,ksel.length+" karakteristik dipilih (fokus)",ksel.length?"Terlalu banyak karakteristik ("+ksel.length+"); pilih 3\u20135 agar kegiatan fokus":"Belum ada karakteristik siswa dipilih");
@@ -154,7 +230,7 @@ function analyze(){
   note="Ketiganya efektif; pilih yang akunnya Anda miliki. Fitur dan batas tiap layanan dapat berbeda sesuai paket.";
  }
  var sc=Math.round(OK.length*100/Math.max(1,OK.length+W.length)),pk=aiPick[mode];
- var opts=game?[["canva","Canva Code (membuat game)"],["chatsoal","Chat AI (membuat soal)"]]:[["claude","Claude"],["chatgpt","ChatGPT"],["gemini","Gemini"]];
+ var opts=game?[["canva","Canva Code (membuat game)"],["chatsoal","Chat AI (membuat soal)"]]:mode==="poster"?[["pcanva","Canva (Magic Design / Canva AI)"],["pimg","AI gambar (ChatGPT, Gemini, dll.)"]]:[["claude","Claude"],["chatgpt","ChatGPT"],["gemini","Gemini"]];
  var h="<div class='ana-g'><div class='ana-b'><h3>1. Hasil analisis</h3><div class='score "+(sc>=80?"ok":"warn")+"'>"+sc+"%</div><small>Kesiapan prompt \u00b7 "+T.length+" bagian \u00b7 "+tot+" karakter \u00b7 \u00b1"+tok+" token</small><ul>"+OK.map(function(x){return "<li class='ok'>\u2713 "+esc(x)+"</li>"}).join("")+W.map(function(x){return "<li class='warn'>\u26a0\ufe0f "+esc(x)+"</li>"}).join("")+"</ul></div>";
  h+="<div class='ana-b'><h3>2. AI yang disarankan</h3><ul>"+R.map(function(r){return "<li><b>"+esc(r[0])+"</b><span class='tag'>"+r[1]+"</span><br><small>"+esc(r[2])+"</small></li>"}).join("")+"</ul><p><small>"+esc(note)+"</small></p></div>";
  h+="<div class='ana-b'><h3>3. Cara memakai di</h3><select id='aiSel'>"+opts.map(function(o){return "<option value='"+o[0]+"'"+(o[0]===pk?" selected":"")+">"+o[1]+"</option>"}).join("")+"</select><ol style='margin-top:10px'>"+STEPS[pk].map(function(s){return "<li>"+esc(s)+"</li>"}).join("")+"</ol></div></div>";
@@ -206,7 +282,7 @@ function renderParts(a,gn){
 }
 var mode="game";
 function rv(i){return $("r_"+i).value.trim()}
-function setMode(m){mode=m;$("gameForm").hidden=m!=="game";$("rppForm").hidden=m!=="rpp";$("tg").classList.toggle("on",m==="game");$("tr").classList.toggle("on",m==="rpp");$("sub").textContent=m==="game"?"Isi data pembelajaran, pilih game, lalu salin prompt ke Canva Code.":"Isi data kelas dan materi, lalu salin prompt RPP/Modul Ajar MPI ke AI favorit Anda.";$("parts").hidden=m!=="game";$("bank").hidden=m!=="game";$("single").hidden=m!=="rpp";$("info").textContent=m==="rpp"?"Prompt diperbarui otomatis saat Anda mengetik.":"";build();}
+function setMode(m){mode=m;$("gameForm").hidden=m!=="game";$("rppForm").hidden=m!=="rpp";$("posterForm").hidden=m!=="poster";$("tg").classList.toggle("on",m==="game");$("tr").classList.toggle("on",m==="rpp");$("tp").classList.toggle("on",m==="poster");$("sub").textContent=m==="game"?"Isi data pembelajaran, pilih game, lalu salin prompt ke Canva Code.":m==="rpp"?"Isi data kelas dan materi, lalu salin prompt RPP/Modul Ajar MPI ke AI favorit Anda.":"Isi topik dan gaya poster, lalu salin prompt ke Canva atau AI gambar.";$("parts").hidden=m!=="game";$("bank").hidden=m!=="game";$("single").hidden=m==="game";$("info").textContent=m!=="game"?"Prompt diperbarui otomatis saat Anda mengetik.":"";build();}
 function buildRpp(){
  var n=rv("n"),jp=rv("jp"),mn=rv("mnt"),tot=(parseInt(n,10)||0)*(parseInt(jp,10)||0),L=$("r_lkpd").checked,S=$("r_soal").checked,m=rv("model");
  var tj=$("r_tujuan").value.split("\n").filter(function(x){return x.trim()}).map(function(x){return "      - "+x.trim()}).join("\n");
@@ -224,7 +300,7 @@ function buildRpp(){
  t+="\nInstruksi dokumen/doc:\nCetak dokumen RPP ini ke dalam file \""+rv("file")+"\" dengan format cetak Portrait A4, warna tema korporat.";
  $("out").textContent=t;analyze();
 }
-function build(){if(mode==="rpp")buildRpp();else buildGame();}
+function build(){if(mode==="rpp")buildRpp();else if(mode==="poster")buildPoster();else buildGame();}
 document.querySelectorAll("#rppForm input,#rppForm select,#rppForm textarea").forEach(function(e){e.addEventListener("input",build);e.addEventListener("change",build)});
 $("copy").onclick=function(){
  var t=$("out").textContent;
