@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Generator Prompt Game Edukasi (Canva Code)</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#eef8fc;--card:#fff;--tx:#12303d;--mut:#5b7886;--ac:#0b8fc2;--acx:#fff;--bd:#c5e3ef;--out:#f5fbfe}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1d25;--card:#162832;--tx:#e6f3f9;--mut:#8fb0bf;--ac:#4cc3ee;--acx:#06222e;--bd:#2a4452;--out:#112029}}
+:root[data-theme="dark"]{--bg:#0e1d25;--card:#162832;--tx:#e6f3f9;--mut:#8fb0bf;--ac:#4cc3ee;--acx:#06222e;--bd:#2a4452;--out:#112029}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5}
+.wrap{max-width:1100px;margin:0 auto;padding:20px 16px 40px}
+h1{font-size:1.5rem;margin:0 0 4px}
+.sub{color:var(--mut);margin:0 0 18px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:820px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px}
+label{display:block;font-weight:600;font-size:.9rem;margin:12px 0 4px}
+label:first-child{margin-top:0}
+input,select,textarea{width:100%;font:inherit;color:var(--tx);background:var(--out);border:1px solid var(--bd);border-radius:10px;padding:10px 12px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.games{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.g{border:2px solid var(--bd);border-radius:10px;padding:10px;background:var(--out);color:var(--tx);font:inherit;text-align:left;cursor:pointer}
+.g b{display:block}.g span{font-size:.8rem;color:var(--mut)}
+.g.on{border-color:var(--ac);background:var(--card)}
+button.main{background:var(--ac);color:var(--acx);border:0;border-radius:10px;padding:12px 18px;font:inherit;font-weight:700;cursor:pointer;width:100%}
+pre{white-space:pre-wrap;word-wrap:break-word;background:var(--out);border:1px solid var(--bd);border-radius:10px;padding:12px;margin:0 0 12px;font:inherit;font-size:.92rem;max-height:560px;overflow-y:auto}
+.hint{font-size:.8rem;color:var(--mut);margin-top:8px}
+.tabs{display:flex;gap:8px;margin-bottom:16px}.tab{flex:1;border:2px solid var(--bd);border-radius:10px;padding:12px;background:var(--card);color:var(--tx);font:inherit;font-weight:700;cursor:pointer}.tab.on{border-color:var(--ac);background:var(--ac);color:var(--acx)}.chk{display:flex;align-items:center;gap:8px;font-weight:600;margin-top:12px}.chk input{width:auto}.r3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+body{background:linear-gradient(160deg,#d4f0fb 0%,#eaf7ff 45%,#fff1f6 100%) fixed}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) body{background:linear-gradient(160deg,#0b1a24,#14202e 50%,#1d1a2e) fixed}}
+:root[data-theme="dark"] body{background:linear-gradient(160deg,#0b1a24,#14202e 50%,#1d1a2e) fixed}
+.wrap{max-width:1180px}
+h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;background:linear-gradient(90deg,#0b8fc2,#7c4dff,#ff6b9d);-webkit-background-clip:text;background-clip:text;color:transparent;margin:6px 0}
+.sub{font-size:1.02rem}
+.card{border-radius:20px;box-shadow:0 10px 30px rgba(11,143,194,.14);padding:20px}
+input,select,textarea{border-radius:12px;border:2px solid var(--bd);transition:border-color .15s,box-shadow .15s}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--ac);box-shadow:0 0 0 4px rgba(11,143,194,.2)}
+button.main{background:linear-gradient(90deg,#0b8fc2,#7c4dff);color:#fff;border-radius:14px;padding:14px;box-shadow:0 6px 16px rgba(124,77,255,.3);transition:transform .12s}
+button.main:active{transform:scale(.97)}
+.tab{border-radius:999px;padding:14px;box-shadow:0 4px 12px rgba(0,0,0,.07)}
+.tab.on{background:linear-gradient(90deg,#0b8fc2,#7c4dff);color:#fff;border-color:transparent}
+.g{border-radius:14px;transition:transform .12s}.g:hover{transform:translateY(-2px)}.g.on{box-shadow:0 6px 16px rgba(11,143,194,.25)}
+.g b{font-size:1rem}
+pre{border-radius:14px;border:2px dashed var(--bd)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{border:2px solid var(--bd);background:var(--out);color:var(--tx);border-radius:999px;padding:8px 14px;font:inherit;font-size:.88rem;cursor:pointer;transition:transform .1s}.chip:active{transform:scale(.95)}.chip.on{background:linear-gradient(90deg,#0b8fc2,#7c4dff);color:#fff;border-color:transparent;font-weight:600}
+label small{font-weight:400;color:var(--mut)}
+.ana-g{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}@media(max-width:900px){.ana-g{grid-template-columns:1fr}}.ana-b{background:var(--out);border:1px solid var(--bd);border-radius:14px;padding:14px}.ana-b h3{margin:0 0 8px;font-size:1rem}.ana-b ul,.ana-b ol{margin:0;padding-left:20px}.ana-b li{margin:5px 0;font-size:.9rem}.score{font-size:2.2rem;font-weight:800;line-height:1.1}li.ok,.score.ok{color:#1a9a5b}li.warn,.score.warn{color:#d97706}.tag{font-size:.7rem;background:var(--ac);color:var(--acx);border-radius:999px;padding:2px 8px;margin-left:6px}.ana-b small{color:var(--mut)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>🎮 Generator Prompt Game Edukasi</h1>
+<p class="sub" id="sub">Isi data pembelajaran, pilih game, lalu salin prompt ke Canva Code.</p><div class="tabs"><button type="button" class="tab on" id="tg" onclick="setMode('game')">🎮 Game Canva Code</button><button type="button" class="tab" id="tr" onclick="setMode('rpp')">📘 RPP / Modul Ajar MPI</button></div>
+<div class="grid">
+<div class="card">
+<div id="gameForm"><label>Jenis game</label>
+<div class="games" id="games"></div>
+<div class="row">
+<div><label for="kelas">Untuk (kelas/jenjang)</label><input id="kelas" value="siswa kelas X"></div>
+<div><label for="mapel">Mata pelajaran</label><input id="mapel" value="Proyek IPAS"></div>
+</div>
+<label for="materi">Materi</label><input id="materi" value="Sistem Periodik Unsur">
+<label for="tujuan">Tujuan pembelajaran</label><textarea id="tujuan" rows="2">membedakan lambang dan nama unsur</textarea>
+<div class="row">
+<div><label for="jsoal">Jumlah soal</label><input id="jsoal" type="number" min="5" max="100" value="30"></div>
+<div><label for="level">Tingkat kesulitan</label>
+<select id="level"><option>mudah</option><option>sedang</option><option>sulit</option><option>campuran (mudah-sedang-sulit)</option></select></div>
+</div>
+<div class="row">
+<div><label for="pemain">Jumlah pemain</label>
+<select id="pemain"><option>1</option><option>2</option><option>3</option><option selected>4</option></select></div>
+<div><label for="maskot">Nama maskot</label><input id="maskot" value="Helium"></div>
+</div>
+<label for="extra">Catatan tambahan (opsional)</label><textarea id="extra" rows="2" placeholder="mis. gunakan bahasa santai, tambahkan level bonus"></textarea></div><div id="rppForm" hidden><label for="r_mapel">Mata pelajaran</label><input id="r_mapel" value="Sistem Komputer"><div class="row"><div><label for="r_kelas">Kelas</label><input id="r_kelas" value="X"></div><div><label for="r_jur">Program keahlian</label><input id="r_jur" value="Rekayasa Perangkat Lunak (RPL)"></div></div><label for="r_topik">Topik / materi</label><input id="r_topik" value="Pengenalan Komponen Utama Komputer & Cara Kerjanya (Input, Process, Storage, Output)"><div class="r3"><div><label for="r_n">Pertemuan</label><input id="r_n" type="number" min="1" max="10" value="2"></div><div><label for="r_jp">JP / pertemuan</label><input id="r_jp" type="number" min="1" max="8" value="2"></div><div><label for="r_mnt">Menit / JP</label><input id="r_mnt" type="number" min="30" max="60" value="45"></div></div><div class="row"><div><label for="r_siswa">Jumlah siswa</label><input id="r_siswa" type="number" min="1" value="32"></div><div><label for="r_model">Model pembelajaran</label><select id="r_model"><option>Problem Based Learning</option><option>Project Based Learning</option><option>Discovery Learning</option><option>Inquiry Learning</option></select></div></div><label>Karakteristik siswa <small>(pilih semua yang sesuai, RPP menyesuaikan otomatis)</small></label><div class="chips" id="r_chips"></div><label for="r_kar">Karakteristik lain (opsional)</label><input id="r_kar" placeholder="mis. banyak siswa pindahan"><label for="r_tujuan">Tujuan pembelajaran (satu per baris)</label><textarea id="r_tujuan" rows="3">Peserta didik mampu mengklasifikasikan komponen utama komputer (Input, Process, Output, Storage) dengan tepat.
+Peserta didik mampu menganalisis alur kerja sistem komputer dari saat data dimasukkan hingga menghasilkan informasi.</textarea><label for="r_profil">Dimensi profil lulusan</label><input id="r_profil" value="Penalaran Kritis, Kolaborasi, Kreativitas"><label for="r_mitra">Kemitraan pembelajaran</label><input id="r_mitra" value="Kerja kelompok kecil (peer collaboration), kelompok beranggotakan 4–5 orang"><label for="r_dig">Pemanfaatan digital</label><input id="r_dig" value="PID, animasi grafis, dan MPI berbasis web"><label for="r_file">Nama file keluaran</label><input id="r_file" value="RPP_SK_Kelas10_SMKS.doc"><label class="chk"><input type="checkbox" id="r_lkpd"> Sertakan LKPD (PBL, visual, interaktif)</label><label class="chk"><input type="checkbox" id="r_soal"> Sertakan 10 soal akhir bertingkat + kunci pembahasan</label></div>
+</div>
+<div class="card">
+<label style="margin-top:0">Hasil prompt</label>
+<div id="parts"></div><div id="bank"><label class="chk"><input type="checkbox" id="b_use"> 📚 Pakai bank soal saya (lebih akurat, disarankan)</label><div id="bankBody" hidden><label>Langkah 1 — Prompt pembuat soal (pakai di chat AI, lalu periksa hasilnya)</label><pre id="b_gen" style="max-height:200px"></pre><button type="button" class="main" id="b_cg" style="margin-bottom:12px">📋 Salin Prompt Pembuat Soal</button><label for="b_paste">Langkah 2 — Tempel soal yang sudah Anda periksa</label><textarea id="b_paste" rows="6" placeholder="1. Teks soal?&#10;A. ...&#10;B. ...&#10;C. ...&#10;D. ...&#10;Jawaban: B"></textarea><label for="b_k">Kirim soal ke Canva Code dalam</label><select id="b_k"><option value="1">1 bagian</option><option value="2">2 bagian</option><option value="3">3 bagian</option></select><div id="b_out" style="margin-top:12px"></div></div></div><div id="single" hidden><pre id="out"></pre>
+<button class="main" id="copy">📋 Salin Prompt</button></div>
+<p class="hint" id="info">Prompt diperbarui otomatis saat Anda mengetik.</p>
+</div>
+<div class="card" id="ana" style="grid-column:1/-1"><label>🔍 Analisis prompt, saran AI, dan tata cara pakai (otomatis)</label><div id="anaBody"></div></div>
+</div>
+</div>
+<script>
+var G=[
+{id:"fish",e:"\ud83d\udc1f",nama:"Fishing Battle Arena",d:"Memancing ikan jawaban",
+ mek:function(p){return "Tampilkan satu soal tetap di bagian atas layar sementara ikan-ikan pembawa pilihan jawaban berenang bebas di kolam. "+(p>1?"Hingga "+p+" siswa memancing bersamaan dari sisi berbeda; siswa yang lebih dulu memancing jawaban benar mendapat poin dan papan skor tiap pemain diperbarui langsung.":"Siswa memancing ikan yang membawa jawaban benar untuk mendapat poin.");},
+ tema:"Gunakan nuansa bawah laut yang segar: air biru muda cerah, rumput laut bergoyang lembut, gelembung udara, kepiting, dan terumbu karang berwarna-warni di sekitar kolam pemancingan — hindari tampilan gelap atau suram."},
+{id:"rocket",e:"\ud83d\ude80",nama:"Roket Kuis Antariksa",d:"Balapan roket ke garis finis",
+ mek:function(p){return "Tampilkan satu soal di bagian atas layar dan beberapa planet pembawa pilihan jawaban di tengah layar. "+(p>1?"Hingga "+p+" siswa memiliki roket di jalurnya masing-masing; setiap jawaban benar membuat roket maju dan pemain pertama yang mencapai garis finis menang.":"Setiap jawaban benar membuat roket maju hingga mencapai garis finis.");},
+ tema:"Gunakan nuansa antariksa yang cerah dan ceria: langit gradasi ungu muda dan biru muda, bintang berkelip lembut, planet berwarna-warni, dan awan komet — hindari tampilan gelap atau menakutkan."},
+{id:"balloon",e:"\ud83c\udf88",nama:"Pecah Balon Kuis",d:"Tap balon jawaban yang benar",
+ mek:function(p){return "Tampilkan satu soal tetap di bagian atas layar sementara balon-balon pembawa pilihan jawaban melayang naik secara perlahan. "+(p>1?"Hingga "+p+" siswa bermain bergantian atau berebut; siswa yang lebih dulu menyentuh balon jawaban benar mendapat poin dan papan skor diperbarui langsung.":"Siswa menyentuh balon jawaban yang benar untuk mendapat poin.");},
+ tema:"Gunakan nuansa pesta taman yang riang: langit biru cerah, awan putih, balon warna-warni, konfeti, dan bunga-bunga di bagian bawah layar — hindari tampilan gelap atau suram."},
+{id:"sort",e:"\ud83e\uddfa",nama:"Sortir Kartu Kategori",d:"Seret kartu ke keranjang",
+ mek:function(p){return "Tampilkan sejumlah kartu yang harus diseret siswa ke keranjang kategori yang tepat. "+(p>1?"Hingga "+p+" siswa atau tim bermain bergiliran, dan papan skor tiap pemain diperbarui langsung setelah setiap kartu dijatuhkan.":"Setiap kartu yang masuk ke keranjang benar mendapat poin.");},
+ tema:"Gunakan nuansa kebun belajar yang segar: rumput hijau muda, keranjang kayu berwarna cerah, kupu-kupu, dan pohon kecil di latar — hindari tampilan gelap atau suram."}
+];
+var cur="fish";
+function $(i){return document.getElementById(i)}
+function v(i){return $(i).value.trim()}
+function buildGame(){
+ var g=G.filter(function(x){return x.id===cur})[0],p=parseInt(v("pemain"),10)||1;
+ var t="Bertindak sebagai game developer edukasi profesional. Buatkan game "+g.nama+" menggunakan Canva Code untuk "+v("kelas")+" pada mata pelajaran "+v("mapel")+" dengan materi "+v("materi")+" yang modern, kreatif, dan out of the box untuk siswa. "+g.mek(p)+" Tujuan pembelajaran dari game ini adalah "+v("tujuan")+". "+(useBank()?"Siapkan sistem untuk "+v("jsoal")+" soal pilihan ganda dengan tingkat kesulitan "+v("level")+"; isi soal diberikan pada prompt terpisah, jadi gunakan 3 soal contoh sementara.":"Sediakan "+v("jsoal")+" soal dengan tingkat kesulitan "+v("level")+".")+" Acak posisi jawaban benar pada setiap soal (jangan selalu di pilihan atau posisi yang sama) agar siswa benar-benar berpikir, bukan menghafal pola jawaban. |||"+g.tema+" Pastikan seluruh elemen interaktif (tombol, pilihan jawaban, kartu, dan objek yang diseret) berukuran besar dengan jarak antar-elemen yang cukup renggang agar mudah disentuh langsung dengan jari di layar sentuh besar seperti IFP (Interactive Flat Panel) di kelas, bukan berukuran kecil seperti untuk mouse; hindari interaksi yang membutuhkan hover, klik kanan, atau scroll kecil, dan pastikan seluruh tampilan menyesuaikan otomatis ke ukuran layar (responsif) tanpa elemen terpotong. |||Gunakan maskot atau karakter pemandu bernama "+v("maskot")+" yang muncul memberi instruksi dan semangat kepada pemain. Tambahkan animasi transisi halus, efek suara ringan, papan skor real-time, dan tombol \"Main Lagi\" pada layar penutup permainan.";
+ if(v("extra"))t+=" "+v("extra").replace(/\s*$/,"")+(/[.!?]$/.test(v("extra"))?"":".");
+ renderParts(t.split("|||"),g.nama);renderBank();analyze();
+}
+function drawGames(){
+ $("games").innerHTML="";
+ G.forEach(function(g){
+  var b=document.createElement("button");b.type="button";b.className="g"+(g.id===cur?" on":"");
+  b.innerHTML="<b></b><span></span>";b.firstChild.textContent=g.e+" "+g.nama;b.lastChild.textContent=g.d;
+  b.onclick=function(){cur=g.id;drawGames();build();};
+  $("games").appendChild(b);
+ });
+}
+["kelas","mapel","materi","tujuan","jsoal","level","pemain","maskot","extra"].forEach(function(i){$(i).addEventListener("input",build)});
+var aiPick={game:"canva",rpp:"claude"};
+var STEPS={
+canva:["Buka canva.com dan masuk ke akun Anda (akun pendidikan/guru biasanya lebih lengkap).","Cari fitur Canva Code lewat kolom pencarian atau menu Canva AI (letak menu dapat berbeda antar versi).","Tempel Bagian 1, kirim, tunggu game selesai dibuat, lalu jalankan pratinjau.","Jika sudah berjalan, kirim Bagian 2, lalu Bagian 3, lalu Bagian 4 (soal), satu per satu.","Uji di layar sentuh kelas, perbaiki dengan prompt pendek dan spesifik, lalu bagikan lewat tautan atau tampilkan di IFP."],
+chatsoal:["Buka chat AI pilihan Anda (claude.ai, chatgpt.com, atau gemini.google.com).","Mulai percakapan baru, lalu tempel Prompt Pembuat Soal dari aplikasi ini.","Periksa setiap soal dan kunci jawaban, terutama lambang, rumus, dan fakta; minta perbaikan jika ada yang salah.","Pastikan jawaban benar tersebar merata di A\u2013D.","Salin soal final ke Langkah 2 di aplikasi ini, lalu kirim Bagian 4 ke Canva Code."],
+claude:["Buka claude.ai dan mulai chat baru.","Unggah template modul ajar sekolah (.docx atau PDF) lewat tombol lampiran, karena prompt menyebut format sesuai lampiran.","Tempel prompt dari aplikasi ini lalu kirim.","Minta hasil sebagai file Word (.docx) bila tersedia; jika tidak, minta teksnya lalu tempel ke Word.","Jika dokumen terpotong, ketik lanjutkan atau minta per bagian: Pertemuan 1, Pertemuan 2, LKPD, soal.","Periksa total menit, sintaks model, tautan sumber, dan kesesuaian CP/TP sebelum dipakai."],
+chatgpt:["Buka chatgpt.com dan mulai chat baru.","Unggah template modul ajar sekolah lewat tombol lampiran.","Tempel prompt dari aplikasi ini lalu kirim.","Minta hasil sebagai file Word (.docx) bila tersedia; jika tidak, minta teksnya lalu tempel ke Word.","Jika dokumen terpotong, minta lanjutan atau minta per bagian: Pertemuan 1, Pertemuan 2, LKPD, soal.","Periksa total menit, sintaks model, tautan sumber, dan kesesuaian CP/TP sebelum dipakai."],
+gemini:["Buka gemini.google.com dan mulai chat baru.","Unggah template modul ajar sekolah lewat tombol tambah/lampiran.","Tempel prompt dari aplikasi ini lalu kirim.","Gunakan opsi ekspor ke Google Docs bila tersedia, lalu unduh sebagai .docx dari Google Docs.","Jika dokumen terpotong, minta lanjutan atau minta per bagian: Pertemuan 1, Pertemuan 2, LKPD, soal.","Periksa total menit, sintaks model, tautan sumber, dan kesesuaian CP/TP sebelum dipakai."]};
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function analyze(){
+ var game=mode==="game",T=[],W=[],OK=[],R,note;
+ document.querySelectorAll(game?(useBank()?"#parts pre,#b_out pre":"#parts pre"):"#out").forEach(function(p){T.push(p.textContent)});
+ var tot=T.join(" ").length,mx=Math.max.apply(null,T.map(function(x){return x.length})),tok=Math.round(tot/4);
+ function chk(c,o,w){if(c)OK.push(o);else W.push(w)}
+ if(game){
+  chk(v("tujuan").length>10,"Tujuan pembelajaran jelas","Tujuan pembelajaran terlalu singkat; gunakan kata kerja terukur (membedakan, menghitung, dst.)");
+  chk(mx<=2500,"Tiap bagian ringkas (terpanjang "+mx+" karakter)","Ada bagian sangat panjang ("+mx+" karakter); Canva Code bisa menolak atau memotongnya. Ringkas isian atau bagi soal ke beberapa bagian");
+  chk(useBank()||(parseInt(v("jsoal"),10)||0)<=15,"Jumlah soal wajar untuk dibuat sekaligus","Meminta Canva Code membuat "+v("jsoal")+" soal sekaligus berisiko salah atau terpotong; aktifkan Bank Soal");
+  chk(!useBank()||$("b_paste").value.trim().length>20,"Soal siap dikirim","Bank Soal aktif tetapi soal belum ditempel (Langkah 2)");
+  chk((parseInt(v("pemain"),10)||1)<=2,"Jumlah pemain aman untuk layar sentuh","Mode "+v("pemain")+" pemain: sentuhan serentak sering bermasalah di IFP; uji dulu atau pakai pemain bergiliran");
+  chk(v("maskot").length>0,"Maskot terisi","Nama maskot masih kosong");
+  R=[["Canva Code","Utama","Prompt Bagian 1\u20134 dirancang untuk membuat game web interaktif di Canva."],["Claude / ChatGPT / Gemini","Pendukung","Untuk membuat dan memeriksa bank soal sebelum dikirim ke Canva Code."]];
+  note="Canva Code dipakai untuk membuat game; soal terbaik dibuat di chat AI lalu diperiksa guru.";
+ }else{
+  var L=$("r_lkpd").checked,S=$("r_soal").checked;
+  chk(ksel.length>=1&&ksel.length<=5,ksel.length+" karakteristik dipilih (fokus)",ksel.length?"Terlalu banyak karakteristik ("+ksel.length+"); pilih 3\u20135 agar kegiatan fokus":"Belum ada karakteristik siswa dipilih");
+  chk(rv("tujuan").length>20,"Tujuan pembelajaran terisi","Tujuan pembelajaran terlalu singkat");
+  chk($("r_tujuan").value.split("\n").filter(function(x){return x.trim()}).length<=3,"Jumlah tujuan wajar","Terlalu banyak tujuan; pilih 1\u20133 yang terukur");
+  chk(!(L&&S),"Panjang dokumen sedang","LKPD + soal akhir membuat dokumen sangat panjang; kirim bertahap (Pertemuan \u2192 LKPD \u2192 Soal)");
+  chk(rv("topik").length>5,"Topik terisi","Topik belum diisi");
+  R=[["Claude","Disarankan","Dapat mengunggah template .docx/PDF dan cocok untuk dokumen panjang berstruktur; hasil bisa disusun sebagai file Word."],["ChatGPT","Alternatif","Bisa mengunggah template dan menyusun dokumen; pilih bila Anda sudah berlangganan."],["Gemini","Alternatif","Cocok bila sekolah memakai Google Workspace: hasil mudah diekspor ke Google Docs."]];
+  note="Ketiganya efektif; pilih yang akunnya Anda miliki. Fitur dan batas tiap layanan dapat berbeda sesuai paket.";
+ }
+ var sc=Math.round(OK.length*100/Math.max(1,OK.length+W.length)),pk=aiPick[mode];
+ var opts=game?[["canva","Canva Code (membuat game)"],["chatsoal","Chat AI (membuat soal)"]]:[["claude","Claude"],["chatgpt","ChatGPT"],["gemini","Gemini"]];
+ var h="<div class='ana-g'><div class='ana-b'><h3>1. Hasil analisis</h3><div class='score "+(sc>=80?"ok":"warn")+"'>"+sc+"%</div><small>Kesiapan prompt \u00b7 "+T.length+" bagian \u00b7 "+tot+" karakter \u00b7 \u00b1"+tok+" token</small><ul>"+OK.map(function(x){return "<li class='ok'>\u2713 "+esc(x)+"</li>"}).join("")+W.map(function(x){return "<li class='warn'>\u26a0\ufe0f "+esc(x)+"</li>"}).join("")+"</ul></div>";
+ h+="<div class='ana-b'><h3>2. AI yang disarankan</h3><ul>"+R.map(function(r){return "<li><b>"+esc(r[0])+"</b><span class='tag'>"+r[1]+"</span><br><small>"+esc(r[2])+"</small></li>"}).join("")+"</ul><p><small>"+esc(note)+"</small></p></div>";
+ h+="<div class='ana-b'><h3>3. Cara memakai di</h3><select id='aiSel'>"+opts.map(function(o){return "<option value='"+o[0]+"'"+(o[0]===pk?" selected":"")+">"+o[1]+"</option>"}).join("")+"</select><ol style='margin-top:10px'>"+STEPS[pk].map(function(s){return "<li>"+esc(s)+"</li>"}).join("")+"</ol></div></div>";
+ $("anaBody").innerHTML=h;
+ $("aiSel").onchange=function(){aiPick[mode]=this.value;analyze()};
+}
+var KC=[{n:"Aktif",a:"sediakan pergerakan fisik dan peran aktif bagi setiap siswa"},{n:"Mudah terdistraksi",a:"gunakan aktivitas pendek (maksimal 10 menit), pergantian aktivitas cepat, dan visual yang mencolok"},{n:"Pasif / pendiam",a:"beri ruang berpendapat yang aman (think-pair-share, polling anonim) dan peran bertahap"},{n:"Suka kompetisi",a:"terapkan gamifikasi: poin, level, papan skor, dan tantangan antarkelompok"},{n:"Cepat bosan",a:"variasikan metode dan media, sisipkan kejutan serta tantangan berjenjang"},{n:"Gaya belajar visual",a:"perbanyak gambar, diagram, video, dan peta konsep"},{n:"Gaya belajar auditori",a:"sertakan diskusi, penjelasan lisan, dan presentasi singkat"},{n:"Gaya belajar kinestetik",a:"sertakan praktik langsung, simulasi, dan aktivitas berpindah tempat"},{n:"Kemampuan beragam (heterogen)",a:"terapkan diferensiasi: tugas berjenjang dan kelompok campuran kemampuan dengan tutor sebaya"},{n:"Literasi rendah",a:"gunakan bahasa sederhana, kalimat pendek, istilah dijelaskan dengan contoh, dan dukungan visual"},{n:"Percaya diri rendah",a:"mulai dari tugas mudah agar siswa merasakan keberhasilan awal, beri umpan balik positif dan spesifik"},{n:"Mahir teknologi",a:"beri ruang eksplorasi digital dan tantangan kreatif berbasis teknologi"},{n:"Kemampuan tinggi",a:"sediakan tugas pengayaan dan peran pemimpin kelompok"},{n:"Perlu motivasi",a:"hubungkan materi dengan kehidupan nyata dan dunia kerja jurusan, beri pilihan tugas"},{n:"Suka berdiskusi",a:"manfaatkan diskusi kelompok dan debat terstruktur"},{n:"Kurang disiplin waktu",a:"gunakan timer di layar dan checkpoint progres tiap kelompok"}];
+var ksel=[0,1];
+function karText(){var a=ksel.map(function(i){return KC[i].n.toLowerCase()});if(rv("kar"))a.push(rv("kar"));return a.length?a.join(", "):"beragam"}
+function karAdapt(){return ksel.length?"Rancang kegiatan yang menyesuaikan karakteristik tersebut, yaitu: "+ksel.map(function(i){return KC[i].a}).join("; ")+". ":""}
+function drawChips(){var c=$("r_chips");c.innerHTML="";KC.forEach(function(k,i){var b=document.createElement("button"),on=ksel.indexOf(i)>-1;b.type="button";b.className="chip"+(on?" on":"");b.textContent=(on?"\u2713 ":"")+k.n;b.onclick=function(){var j=ksel.indexOf(i);if(j>-1)ksel.splice(j,1);else ksel.push(i);drawChips();build()};c.appendChild(b)})}
+drawChips();
+function useBank(){return $("b_use").checked}
+function gname(){return G.filter(function(x){return x.id===cur})[0].nama}
+function renderBank(){
+ $("bankBody").hidden=!useBank();
+ if(!useBank())return;
+ $("b_gen").textContent="Buatkan "+v("jsoal")+" soal pilihan ganda (4 pilihan, A-D) dengan tingkat kesulitan "+v("level")+" untuk "+v("kelas")+" pada mata pelajaran "+v("mapel")+" dengan materi "+v("materi")+". Tujuan pembelajaran: "+v("tujuan")+". Pastikan seluruh fakta akurat, pengecoh masuk akal, dan posisi jawaban benar tersebar merata di A, B, C, D. Tulis setiap soal dengan format persis seperti ini:\n1. Teks soal?\nA. ...\nB. ...\nC. ...\nD. ...\nJawaban: B\n\nSetelah daftar soal, tampilkan tabel kunci jawaban singkat agar saya bisa memeriksanya.";
+ var raw=$("b_paste").value.trim(),k=parseInt($("b_k").value,10)||1,items=raw?raw.split(/\n(?=\s*\d+[.)]\s)/):["[tempel daftar soal di sini]"];
+ var size=Math.ceil(items.length/k),chunks=[],box=$("b_out");box.innerHTML="";
+ for(var i=0;i<k;i++){var c=items.slice(i*size,(i+1)*size).join("\n").trim();if(c)chunks.push(c)}
+ var N=chunks.length;
+ chunks.forEach(function(c,i){
+  var s=i===0?"Lanjutkan dan perbarui game "+gname()+" yang sudah dibuat. Ganti seluruh soal dengan daftar soal berikut persis seperti tertulis, tanpa mengubah kata, urutan pilihan, atau kunci jawaban."+(N>1?" Daftar ini dikirim dalam "+N+" bagian; ini bagian 1, soal lanjutannya menyusul.":"")+" Tetap acak posisi pilihan jawaban saat ditampilkan (tentukan jawaban benar dari isi teksnya, bukan dari hurufnya).\n\nDAFTAR SOAL:\n"+c:"Tambahkan soal berikut ke daftar soal game yang sama (bagian "+(i+1)+" dari "+N+"), persis seperti tertulis, tanpa mengubah soal yang sudah ada.\n\nDAFTAR SOAL (LANJUTAN):\n"+c;
+  var h=document.createElement("label");h.textContent="Bagian 4"+(N>1?" ("+(i+1)+"/"+N+")":"")+" \u2014 kirim setelah Bagian 3";
+  var p=document.createElement("pre");p.textContent=s;p.style.maxHeight="260px";
+  var b=document.createElement("button");b.type="button";b.className="main";b.style.marginBottom="10px";b.textContent="\ud83d\udccb Salin Bagian 4"+(N>1?" ("+(i+1)+"/"+N+")":"");
+  b.onclick=function(){copyText(s,$("info"),"\u2705 Bagian 4 tersalin!")};
+  box.appendChild(h);box.appendChild(p);box.appendChild(b);
+ });
+}
+$("b_use").addEventListener("change",build);
+["b_paste","b_k"].forEach(function(i){$(i).addEventListener("input",renderBank);$(i).addEventListener("change",renderBank)});
+$("b_cg").onclick=function(){copyText($("b_gen").textContent,$("info"),"\u2705 Prompt pembuat soal tersalin!")};
+function copyText(t,el,msg){var ok=function(){el.textContent=msg};var fb=function(){var ta=document.createElement("textarea");ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand("copy");ok()}catch(e){el.textContent="Gagal menyalin, silakan salin manual."}document.body.removeChild(ta)};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,fb)}else fb()}
+function renderParts(a,gn){
+ var box=$("parts"),N=a.length;box.innerHTML="";
+ a.forEach(function(s,i){
+  s=s.trim();
+  if(i===0)s+=" (Bagian 1 dari "+N+": buat dulu struktur game, soal, dan logika permainan. Tampilan dan fitur akan disempurnakan pada prompt berikutnya.)";
+  else s="Lanjutkan dan perbarui game "+gn+" yang sudah dibuat sebelumnya tanpa mengubah soal dan mekanik permainan. "+s;
+  var h=document.createElement("label");h.textContent="Bagian "+(i+1)+" dari "+N+(i===0?" \u2014 kirim pertama":" \u2014 kirim setelah game muncul");
+  var p=document.createElement("pre");p.textContent=s;p.style.maxHeight="260px";
+  var b=document.createElement("button");b.type="button";b.className="main";b.style.marginBottom="14px";b.textContent="\ud83d\udccb Salin Bagian "+(i+1);
+  b.onclick=function(){copyText(s,$("info"),"\u2705 Bagian "+(i+1)+" tersalin!")};
+  box.appendChild(h);box.appendChild(p);box.appendChild(b);
+ });
+ $("info").textContent="Tempel Bagian 1 dulu di Canva Code, tunggu game jadi, lalu kirim Bagian 2 dan 3 satu per satu.";
+}
+var mode="game";
+function rv(i){return $("r_"+i).value.trim()}
+function setMode(m){mode=m;$("gameForm").hidden=m!=="game";$("rppForm").hidden=m!=="rpp";$("tg").classList.toggle("on",m==="game");$("tr").classList.toggle("on",m==="rpp");$("sub").textContent=m==="game"?"Isi data pembelajaran, pilih game, lalu salin prompt ke Canva Code.":"Isi data kelas dan materi, lalu salin prompt RPP/Modul Ajar MPI ke AI favorit Anda.";$("parts").hidden=m!=="game";$("bank").hidden=m!=="game";$("single").hidden=m!=="rpp";$("info").textContent=m==="rpp"?"Prompt diperbarui otomatis saat Anda mengetik.":"";build();}
+function buildRpp(){
+ var n=rv("n"),jp=rv("jp"),mn=rv("mnt"),tot=(parseInt(n,10)||0)*(parseInt(jp,10)||0),L=$("r_lkpd").checked,S=$("r_soal").checked,m=rv("model");
+ var tj=$("r_tujuan").value.split("\n").filter(function(x){return x.trim()}).map(function(x){return "      - "+x.trim()}).join("\n");
+ var t="Anda adalah seorang guru SMK berpengalaman dalam menciptakan pembelajaran interaktif dan kontekstual menggunakan Teknologi (PID/Gawai Digital) pada kelas "+rv("kelas")+" mata pelajaran "+rv("mapel")+" pada siswa SMK program keahlian "+rv("jur")+".\n"+
+ "Buatkan modul ajar/RPP menggunakan kerangka pembelajaran mendalam (PM) integrasi dengan Media Pembelajaran Interaktif (MPI) berbasis TPACK (Technological Pedagogical Content Knowledge) untuk "+n+" kali pertemuan. 1 pertemuan berdurasi "+jp+" x "+mn+" menit.\n"+
+ "Buatkan kegiatan yang menarik dan memancing rasa ingin tahu siswa untuk materi "+rv("topik")+" dari kegiatan pembukaan/awal, inti, dan penutup kegiatan pembelajaran. Sajikan dalam bentuk poin-poin yang dapat langsung digunakan oleh guru mulai dari tujuan kegiatan, langkah-langkah pelaksanaan, pertanyaan pemantik dan estimasi waktu setiap kegiatan. Peserta didik berjumlah "+rv("siswa")+" siswa dengan karakter "+karText()+". "+karAdapt()+"Pembelajaran dilakukan di kelas menggunakan Papan Interaktif Digital (PID), sehingga kegiatan pembuka harus melibatkan tampilan visual atau interaksi langsung (misalnya video, animasi, polling sederhana, gambar situasi, atau pertanyaan cepat di layar).\n\n"+
+ "Modul Ajar/RPP menggunakan format modul ajar sesuai dalam lampiran.\n\n"+
+ "1. INFORMASI UMUM\n   Mata Pelajaran: "+rv("mapel")+"\n   Kelas / Program Keahlian: "+rv("kelas")+" / "+rv("jur")+"\n   Durasi: "+n+" Pertemuan ("+tot+" x "+mn+" Menit)\n   Topik: "+rv("topik")+"\n   Karakteristik Siswa: "+rv("siswa")+" siswa, "+karText()+"\n\n"+
+ "2. Identifikasi\n   Dimensi Profil Lulusan: "+rv("profil")+"\n\n"+
+ "3. Desain Pembelajaran\n   a) Tujuan Pembelajaran:\n"+tj+"\n   b) Praktik Pedagogis: Model pembelajaran yang digunakan: "+m+" (jabarkan kegiatan menggunakan sintaks "+m+")\n   c) Kemitraan Pembelajaran: "+rv("mitra")+"\n   d) Lingkungan Pembelajaran: Suasana pembelajaran aman dan nyaman dalam berkolaborasi dan berdiskusi\n   e) Pemanfaatan Digital: "+rv("dig")+"\n\n"+
+ "4. Prinsip Pembelajaran Mendalam (jabarkan kegiatan sesuai prinsip PM)\n   a) Berkesadaran\n   b) Bermakna\n   c) Menggembirakan\n\n"+
+ "5. Pengalaman Belajar (jabarkan kegiatan sesuai prinsip pengalaman belajar 3M)\n   a) Memahami\n   b) Mengaplikasi\n   c) Merefleksi\n\n"+
+ "6. Asesmen Pembelajaran\n   a) Awal\n   b) Proses\n   c) Akhir pembelajaran"+(S?" (10 soal bertingkat tentang materi yang dibahas + kunci pembahasan)":"")+"\n   d) Penilaian berbasis kelas\n   e) Penilaian kinerja\n";
+ if(L)t+="\n7. Buat LKPD menarik, sesuai tujuan pembelajaran dan karakteristik murid di atas\n   a) LKPD "+m+"\n   b) Pendekatan Pembelajaran mendalam\n   c) Format Tampilan: Menarik, Interaktif, Visual\n   d) Komponen yang disertakan: Tujuan, Petunjuk, Materi Singkat, Aktivitas/Kegiatan, Pertanyaan, Refleksi Murid\n";
+ t+="\nInstruksi dokumen/doc:\nCetak dokumen RPP ini ke dalam file \""+rv("file")+"\" dengan format cetak Portrait A4, warna tema korporat.";
+ $("out").textContent=t;analyze();
+}
+function build(){if(mode==="rpp")buildRpp();else buildGame();}
+document.querySelectorAll("#rppForm input,#rppForm select,#rppForm textarea").forEach(function(e){e.addEventListener("input",build);e.addEventListener("change",build)});
+$("copy").onclick=function(){
+ var t=$("out").textContent;
+ function ok(){$("info").textContent="✅ Prompt tersalin! Tempel di Canva Code.";}
+ function fb(){var r=document.createRange();r.selectNodeContents($("out"));var s=getSelection();s.removeAllRanges();s.addRange(r);try{document.execCommand("copy");ok();}catch(e){$("info").textContent="Teks sudah terpilih, tekan Ctrl+C untuk menyalin.";}}
+ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,fb);}else fb();
+};
+drawGames();build();
+</script>
+</body>
+</html>
